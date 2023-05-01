@@ -2,23 +2,44 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My GitHub Files</title>
+    <title>Google.com</title>
   </head>
   <body>
-    <h1>My GitHub Files</h1>
+    <h1>Padhai karleta madarchod</h1>
     <ul id="fileList"></ul>
     <script>
-      fetch("https://api.github.com/repos/Snip3R69/WTL/contents")
+      fetch("https://api.github.com/repos/Snip3R69/WTL/contents?ref=master")
         .then(response => response.json())
         .then(data => {
           let fileList = "";
-          data.forEach(file => {
-            if (file.type === "file") {
-              fileList += `<li><a href="${file.html_url}">${file.name}</a></li>`;
+          data.forEach(item => {
+            if (item.type === "file") {
+              fileList += `<li><a href="${item.html_url}">${item.path}</a></li>`;
+            } else if (item.type === "dir") {
+              fileList += `<li>${item.path}</li>`;
+              fetch(item.url)
+                .then(response => response.json())
+                .then(data => {
+                  let subFileList = "";
+                  data.forEach(file => {
+                    subFileList += `<li><a href="${file.html_url}">${file.path}</a></li>`;
+                  });
+                  document.querySelector(`#fileList li:nth-of-type(${countFolders(data)})`).innerHTML += `<ul>${subFileList}</ul>`;
+                });
             }
           });
           document.getElementById("fileList").innerHTML = fileList;
         });
+
+      function countFolders(data) {
+        let count = 0;
+        data.forEach(item => {
+          if (item.type === "dir") {
+            count++;
+          }
+        });
+        return count;
+      }
     </script>
   </body>
 </html>
