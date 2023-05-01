@@ -5,7 +5,7 @@
     <title>Google</title>
   </head>
   <body>
-    <h1>Padhleta madarchod</h1>
+    <h1>Padhleta madarchodam</h1>
     <ul id="fileList"></ul>
     <script>
       const username = "Snip3R69";
@@ -17,7 +17,7 @@
           let fileList = "";
           data.forEach(item => {
             if (item.type === "file") {
-              fileList += `<li><a href="${item.html_url}">${item.path}</a></li>`;
+              fileList += `<li><a href="#" onclick="getFileContent('${item.url}')">${item.path}</a></li>`;
             } else if (item.type === "dir") {
               fileList += `<li>${item.path}</li>`;
               fetch(item.url)
@@ -25,7 +25,7 @@
                 .then(data => {
                   let subFileList = "";
                   data.forEach(file => {
-                    subFileList += `<li><a href="${file.html_url}">${file.path}</a></li>`;
+                    subFileList += `<li><a href="#" onclick="getFileContent('${file.url}')">${file.path}</a></li>`;
                   });
                   document.querySelector(`#fileList li:last-of-type`).innerHTML += `<ul>${subFileList}</ul>`;
                 });
@@ -33,6 +33,15 @@
           });
           document.getElementById("fileList").innerHTML = fileList;
         });
+
+      function getFileContent(fileUrl) {
+        fetch(fileUrl)
+          .then(response => response.json())
+          .then(data => {
+            let content = atob(data.content);
+            document.body.innerHTML = `<pre>${content}</pre>`;
+          });
+      }
     </script>
   </body>
 </html>
