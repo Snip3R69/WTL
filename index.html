@@ -10,28 +10,49 @@
     <script>
       const username = "Snip3R69";
       const repoName = "WTL";
+      const baseUrl = 'https://wtl.snip3r.me';
+
+      // Helper function to create a file list item
+      function createFileListItem(item) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        if (item.type === 'file') {
+          a.href = `${baseUrl}/${item.path}`;
+          a.target = '_blank'; // Open file in a new tab
+          a.innerText = item.name;
+        } else {
+          // For directories, add an onclick event to fetch subdirectory contents
+          a.href = '#';
+          a.onclick = (event) => {
+            event.preventDefault(); // Prevent link from following URL
+            fetch(item.url)
+              .then(response => response.json())
+              .then(data => {
+                const subList = createFileList(data);
+                li.appendChild(subList);
+              });
+          };
+          a.innerText = `${item.name}/`;
+        }
+        li.appendChild(a);
+        return li;
+      }
+
+      // Helper function to create a file list from data array
+      function createFileList(data) {
+        const ul = document.createElement('ul');
+        data.forEach(item => {
+          const li = createFileListItem(item);
+          ul.appendChild(li);
+        });
+        return ul;
+      }
 
       fetch(`https://api.github.com/repos/${username}/${repoName}/contents`)
         .then(response => response.json())
         .then(data => {
-          let fileList = "";
-          data.forEach(item => {
-            if (item.type === "file") {
-              fileList += `<li><a href="${item.html_url}">${item.path}</a></li>`;
-            } else if (item.type === "dir") {
-              fileList += `<li>${item.path}</li>`;
-              fetch(item.url)
-                .then(response => response.json())
-                .then(data => {
-                  let subFileList = "";
-                  data.forEach(file => {
-                    subFileList += `<li><a href="${file.html_url}">${file.path}</a></li>`;
-                  });
-                  document.querySelector(`#fileList li:last-of-type`).innerHTML += `<ul>${subFileList}</ul>`;
-                });
-            }
-          });
-          document.getElementById("fileList").innerHTML = fileList;
+          const fileList = createFileList(data);
+          document.getElementById("fileList").appendChild(fileList);
         });
     </script>
   </body>
