@@ -1,35 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>11Add Element Example</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<style>
-		.box {
-			background-color: #2196F3;
-			width: 100px;
-			height: 100px;
-			margin: 20px;
-			display: inline-block;
-			text-align: center;
-			line-height: 100px;
-			color: #fff;
-			font-weight: bold;
-			font-size: 20px;
-		}
-	</style>
+  <title>Dynamic Element Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<button id="add-btn">Add Element</button>
-	<div id="container"></div>
+  <button id="add-button">Add Element</button>
+  <div id="container"></div>
+
+  <script>
+    $(document).ready(function() {
+      $('#add-button').click(function() {
+        var newElement = $('<p>This is a new element!</p>');
+        $('#container').append(newElement);
+      });
+    });
+  </script>
 </body>
 </html>
-{{{{{{{{{{{{{{{{{{{{{{{{{In the HTML code above, we have a button with the id add-btn and a div with the id container. We will use jQuery to add dynamic elements to the container div when the add-btn button is clicked.
-
-JavaScript (jQuery):}}}}}}}}}}}}}]
-
-
-$(document).ready(function() {
-	$("#add-btn").click(function() {
-		$("#container").append("<div class='box'>Element</div>");
-	});
-});
