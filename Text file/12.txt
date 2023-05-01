@@ -1,0 +1,41 @@
+                                                                                 Devashish Vidhate
+                                                                                 Roll no.: 2203072
+<!DOCTYPE html>
+<html>
+<head>
+	<title>12Popup Example</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		.popup {
+			position: absolute;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			padding: 10px;
+			display: none;
+			z-index: 999;
+		}
+	</style>
+</head>
+<body>
+	<a href="#" class="popup-link">Hover over me to show popup</a>
+	<div class="popup" id="my-popup">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name"><br><br>
+		<label for="email">Email:</label>
+		<input type="text" id="email" name="email"><br><br>
+		<button id="submit-btn">Submit</button>
+	</div>
+</body>
+</html>
+{{{{{In the HTML code above, we have a link with the class popup-link that will show a popup when it is hovered over. The popup has the ID my-popup and contains two text boxes and a button.
+
+JavaScript (jQuery):}}}}
+
+$(document).ready(function() {
+	$(".popup-link").mouseover(function() {
+		$("#my-popup").show();
+	});
+	$(".popup-link").mouseout(function() {
+		$("#my-popup").hide();
+	});
+});

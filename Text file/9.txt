@@ -1,0 +1,62 @@
+                                                                              Devashish Vidhate
+                                                                              Roll no.: 2203072
+
+{{{{{9:To create the database table with the given entries, you can use the following SQL query:
+
+sql
+Copy code
+CREATE TABLE students (
+  rollNo INT PRIMARY KEY,
+  studName VARCHAR(50) NOT NULL,
+  studDept VARCHAR(50) NOT NULL,
+  passingYear INT NOT NULL,
+  classGrades ENUM('First Class', 'Second Class', 'Pass') NOT NULL
+);
+
+
+}}}}}}
+
+This will create a table named students with the specified columns.
+
+To design the UI for displaying the data from this table, 
+you can use HTML and PHP. Here's an example:}}}}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Information</title>
+</head>
+<body>
+  <h1>Student Information</h1>
+  <?php
+    // Connect to the database
+    $conn = mysqli_connect('localhost', 'username', 'password', 'database_name');
+    
+    // Check if connection was successful
+    if (!$conn) {
+      die('Connection failed: ' . mysqli_connect_error());
+    }
+    
+    // Fetch data from the table
+    $sql = "SELECT * FROM students";
+    $result = mysqli_query($conn, $sql);
+    
+    // Check if any data was retrieved
+    if (mysqli_num_rows($result) > 0) {
+      // Display the data in a table
+      echo "<table>";
+      echo "<tr><th>Roll No</th><th>Name</th><th>Department</th><th>Passing Year</th><th>Class Grades</th></tr>";
+      while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr><td>" . $row['rollNo'] . "</td><td>" . $row['studName'] . "</td><td>" . $row['studDept'] . "</td><td>" . $row['passingYear'] . "</td><td>" . $row['classGrades'] . "</td></tr>";
+      }
+      echo "</table>";
+    } else {
+      echo "No data found.";
+    }
+    
+    // Close the database connection
+    mysqli_close($conn);
+  ?>
+</body>
+</html>
+

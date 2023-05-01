@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Calculator</title>
+  </head>
+  <body
+    style="
+      color: white;
+      text-align: center;
+      font-family: luminari;
+      font-style: italic;
+      font-size: large;
+      background-color: rgba(45, 44, 44, 0.953);
+    "
+  >
+    <div class="calc">
+      <h1>Arithmetic Operator</h1>
+      <p id="maths">
+        Enter First Number:
+        <input
+          id="num1"
+          style="
+            background-color: rgb(220, 218, 218);
+            border: 1px solid #fff;
+            outline: none;
+            color: #000;
+          "
+          type="text"
+          size="20"
+        /><br />
+        <br /><br />
+        Enter Second Number:
+        <input
+          id="num2"
+          style="
+            background-color: rgb(220, 218, 218);
+            border: 1px solid #fff;
+            outline: none;
+            color: #000;
+          "
+          type="text"
+          size="20"
+        /><br />
+        <br />
+        <br />
+        Select Operation:
+        <select id="operations">
+          <option value="add">Addition</option>
+          <option value="sub">Subtraction</option>
+          <option value="multiply">Multiplication</option>
+          <option value="divide">Division</option>
+        </select>
+        <br />
+        <br />
+        <input
+          type="button"
+          id="button1"
+          value="Calculate"
+          onclick="calculateUsingDropdown()"
+        />
+      </p>
+      <br /><br />
+      Result: <input type="text" id="result" readonly />
+    </div>
+    <script>
+      function calculateUsingDropdown() {
+        var operation = document.getElementById("operations").value;
+        calculate(operation);
+      }
+
+      function calculate(operation) {
+        var num1 = parseFloat(document.getElementById("num1").value);
+        var num2 = parseFloat(document.getElementById("num2").value);
+        var result = 0;
+        if (operation === "add") {
+          result = num1 + num2;
+        } else if (operation === "sub") {
+          result = num1 - num2;
+        } else if (operation === "multiply") {
+          result = num1 * num2;
+        } else if (operation === "divide") {
+          result = num1 / num2;
+        }
+        document.getElementById("result").value = result;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ArrayCount</title>
+  </head>
+  <body>
+    <div id="div1">
+      <input type="text" id="ip1" />
+      <input type="button" value="click" onclick="func()" />
+    </div>
+    <script>
+      var txt = document.getElementById("ip1");
+      var ans = document.getElementById("div1");
+      var arr = ["a", "b", "a", "c", "z"];
+
+      function func() {
+        var txt1 = txt.value;
+        var newtxt = txt1.toLowerCase();
+        let c = 0;
+        for (let i of arr) {
+          if (i == newtxt) {
+            c++;
+          }
+        }
+        ans.innerHTML = `Occurences of ${newtxt} = ${c}`;
+      }
+    </script>
+  </body>
+</html>

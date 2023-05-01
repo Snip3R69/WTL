@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Table</title>
+    <link rel="stylesheet" type="text/css" href="Style.css" />
+  </head>
+
+  <body>
+    <h2>MIT ADT</h2>
+    <table id="t1">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Code</th>
+          <th>Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Physics</td>
+          <td>BIT20</td>
+          <td>96</td>
+        </tr>
+        <tr>
+          <td>Chemistry</td>
+          <td>BIT19</td>
+          <td>75</td>
+        </tr>
+        <tr>
+          <td>Maths</td>
+          <td>BIT23</td>
+          <td>88</td>
+        </tr>
+      </tbody>
+    </table>
+    <input type="button" value="ADD" onclick="f1()" />
+    <button onclick="myDeleteFunction()">DELETE</button>
+
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
+    <script type="text/javascript">
+      function f1() {
+        var x = document.getElementById("t1");
+
+        var tr1 = document.createElement("tr");
+        var row1 = document.createElement("td");
+        var row2 = document.createElement("td");
+        var row3 = document.createElement("td");
+
+        var Node1 = document.createTextNode("Maths");
+        var Node2 = document.createTextNode("BIT23");
+        var Node3 = document.createTextNode("88");
+
+        tr1.appendChild(row1);
+        tr1.appendChild(row2);
+        tr1.appendChild(row3);
+
+        row1.appendChild(Node1);
+        row2.appendChild(Node2);
+        row3.appendChild(Node3);
+
+        x.appendChild(tr1);
+      }
+
+      function myDeleteFunction() {
+        document.getElementById("t1").deleteRow(1);
+      }
+    </script>
+  </body>
+</html>

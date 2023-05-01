@@ -1,0 +1,37 @@
+<?php
+// Numeric array
+$numbers = array(1, 2, 3, 4, 5);
+
+echo "Numeric Array:<br>";
+foreach($numbers as $num){
+    echo $num."<br>";
+}
+
+// Associative array
+$person = array(
+    "name" => "Pragya Saini",
+    "age" => 30,
+    "location" => "Delhi"
+);
+
+echo "Associative Array:<br>";
+foreach($person as $key => $value){
+    echo $key.": ".$value."<br>";
+}
+
+// Multidimensional array
+$students = array(
+    array("name" => "Pragya", "age" => 20, "class" => "A"),
+    array("name" => "Sorabh", "age" => 21, "class" => "B"),
+    array("name" => "Kanchan", "age" => 22, "class" => "C")
+);
+
+echo "Multidimensional Array:<br>";
+foreach($students as $student){
+    foreach($student as $key => $value){
+        echo $key.": ".$value."<br>";
+    }
+    echo "<br>";
+}
+?>
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shopping Application</title>
+</head>
+<body>
+	<h1>Shopping Application</h1>
+
+	<!-- Book form -->
+	<form>
+		<label for="bookTitle">Title:</label>
+		<input type="text" id="bookTitle" name="bookTitle" required><br>
+
+		<label for="bookAuthor">Author:</label>
+		<input type="text" id="bookAuthor" name="bookAuthor" required><br>
+
+		<label for="bookPrice">Price:</label>
+		<input type="number" id="bookPrice" name="bookPrice" required><br>
+
+		<button type="button" onclick="addBook()">Add to Cart</button>
+		<button type="button" onclick="updateBook()">Update Cart</button>
+		<button type="button" onclick="deleteBook()">Remove from Cart</button>
+	</form>
+
+	<hr>
+
+	<!-- Book cart -->
+	<h2>Book Cart</h2>
+	<ul id="bookList"></ul>
+
+	<script>
+		// Initialize the book cart as an empty array
+		let bookCart = [];
+
+		// Function to add a book to the cart
+		function addBook() {
+			// Get the book details from the form
+			let bookTitle = document.getElementById("bookTitle").value;
+			let bookAuthor = document.getElementById("bookAuthor").value;
+			let bookPrice = document.getElementById("bookPrice").value;
+
+			// Check if the book title already exists in the cart
+			let existingBook = bookCart.find(book => book.title === bookTitle);
+
+			// If the book exists, update its quantity and price
+			if (existingBook) {
+				existingBook.quantity++;
+				existingBook.price = parseFloat(existingBook.price) + parseFloat(bookPrice);
+			} else {
+				// If the book does not exist, add it to the cart
+				let book = {
+					title: bookTitle,
+					author: bookAuthor,
+					price: bookPrice,
+					quantity: 1
+				};
+				bookCart.push(book);
+			}
+
+			// Clear the form fields
+			document.getElementById("bookTitle").value = "";
+			document.getElementById("bookAuthor").value = "";
+			document.getElementById("bookPrice").value = "";
+
+			// Update the book cart display
+			displayCart();
+		}
+
+		// Function to update the quantity and price of a book in the cart
+		function updateBook() {
+			// Get the book details from the form
+			let bookTitle = document.getElementById("bookTitle").value;
+			let bookPrice = document.getElementById("bookPrice").value;
+
+			// Check if the book title exists in the cart
+			let existingBook = bookCart.find(book => book.title === bookTitle);
+
+			// If the book exists, update its quantity and price
+			if (existingBook) {
+				existingBook.quantity++;
+				existingBook.price = parseFloat(existingBook.price) + parseFloat(bookPrice);
+
+				// Clear the form fields
+				document.getElementById("bookTitle").value = "";
+				document.getElementById("bookAuthor").value = "";
+				document.getElementById("bookPrice").value = "";
+
+				// Update the book cart display
+				displayCart();
+			} else {
+				alert("Book not found in cart.");
+			}
+		}
+
+		// Function to remove a book from

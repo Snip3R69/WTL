@@ -1,0 +1,14 @@
+                                                                          Devashish Vidhate
+                                                                          Roll no.: 2203072
+<?php
+// Get the number from the user
+$number = readline('Enter a number: ');
+
+// Print the multiplication table for that number up to 10
+echo "M7ultiplication table for $number:\n";
+for ($i = 1; $i <= 10; $i++) {
+    echo "$number x $i = " . ($number * $i) . "\n";
+}
+?>
+
+                                                        

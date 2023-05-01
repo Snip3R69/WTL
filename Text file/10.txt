@@ -1,0 +1,35 @@
+                                                                                 Devashish Vidhate
+                                                                                 Roll no.: 2203072
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animation Example10</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		.box {
+			background-color: #2196F3;
+			width: 100px;
+			height: 100px;
+			margin: 20px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<button id="animate-btn">Animate</button>
+	<div class="box"></div>
+</body>
+</html>
+{{{{{{{{{{{{{{{In the HTML code above, we have a button with the id animate-btn and a div with the class box. The box class defines the styling of the div, and we set display: none so that the div is initially hidden.
+
+JavaScript (jQuery):}}}}}}}}}}}}}}}}}}}}}
+
+$(document).ready(function() {
+	$("#animate-btn").click(function() {
+		$(".box").fadeIn(1000).animate({
+			width: "200px",
+			height: "200px",
+			borderRadius: "50%"
+		}, 1000).fadeOut(1000);
+	});
+});
