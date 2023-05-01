@@ -1,31 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>JQuery11</title>
+<html>
+<head>
+  <title>jQuery Dynamic Element Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <button id="add-button">Add Element</button>
+  <div id="element-container"></div>
 
-    <style type="text/css">
-      .box {
-        background-color: red;
-        width: 200px;
-        height: 200px;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>Dynamically add an HTML element using JQuery</h2>
-    <div id="board">The Board is empty, now add some div on it!!!</div>
-    <button id="btn_add">Add a Div</button>
-
-    <script src="jquery-3.5.1.min.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        $("#btn_add").click(function () {
-          $("#board").append(
-            "<div class='box'> Just added a new division!!! </div>"
-          );
-        });
+  <script>
+    $(document).ready(function() {
+      $('#add-button').click(function() {
+        var newElement = $('<div class="new-element">This is a new element added dynamically</div>');
+        $('#element-container').append(newElement);
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
